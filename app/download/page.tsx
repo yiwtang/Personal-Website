@@ -53,7 +53,7 @@ export default function Home() {
 
   return (
     <LegalLayout
-      title="法院文书批量下载工具"
+      title="法院文书批量下载"
       subtitle="粘贴短信或链接，获取送达文书列表并下载（适用于法院“一张网”短信）"
     >
           {error && (

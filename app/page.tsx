@@ -32,7 +32,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 mx-auto flex h-full max-w-5xl flex-col justify-end px-4 pb-12 md:px-10">
           <h1 className="text-[clamp(3.5rem,6.5vw,4.5rem)] font-light leading-[1.5] tracking-tight text-white">
-            even在开庭
+            even
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-[1.6] text-neutral-300">
             生活、法律、科技与审美的交汇处。
