@@ -4,7 +4,10 @@ import { Toaster } from 'sonner'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: '法院文书批量下载工具',
+  title: {
+    template: '%s',
+    default: 'even',
+  },
   description: '粘贴短信或链接，获取送达文书列表并下载',
   icons: {
     icon: [
