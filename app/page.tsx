@@ -1,5 +1,7 @@
 ﻿"use client";
 
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const heroImages = [
@@ -10,16 +12,38 @@ const heroImages = [
   "/hero-home5.jpg",
 ];
 
-type TabKey = "record" | "lab";
+const getRandomHeroImage = () =>
+  heroImages[Math.floor(Math.random() * heroImages.length)];
+
+type TabKey = "record" | "lab" | "question" | "me";
+
+const tabs = [
+  { key: "record" as const, label: "记录" },
+  { key: "lab" as const, label: "实验" },
+  { key: "question" as const, label: "问题" },
+  { key: "me" as const, label: "我" },
+];
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const [tab, setTab] = useState<TabKey>("record");
   const [heroImage, setHeroImage] = useState(heroImages[0]);
 
   useEffect(() => {
-    const idx = Math.floor(Math.random() * heroImages.length);
-    setHeroImage(heroImages[idx]);
+    setHeroImage(getRandomHeroImage());
   }, []);
+
+  useEffect(() => {
+    const nextTab = searchParams.get("tab");
+    if (
+      nextTab === "record" ||
+      nextTab === "lab" ||
+      nextTab === "question" ||
+      nextTab === "me"
+    ) {
+      setTab(nextTab);
+    }
+  }, [searchParams]);
 
   return (
     <main className="min-h-screen bg-black text-neutral-200">
@@ -41,11 +65,8 @@ export default function Home() {
       </section>
 
       <div className="mx-auto mt-16 max-w-5xl px-4 md:px-10">
-        <div className="flex gap-12 border-b border-neutral-800">
-          {[
-            { key: "record" as const, label: "记录" },
-            { key: "lab" as const, label: "实验" },
-          ].map((item) => (
+        <div className="flex flex-wrap gap-12 border-b border-neutral-800">
+          {tabs.map((item) => (
             <button
               key={item.key}
               onClick={() => setTab(item.key)}
@@ -62,37 +83,23 @@ export default function Home() {
       </div>
 
       <section className="mx-auto max-w-5xl px-4 py-20 md:px-10">
-        {tab === "record" ? <RecordList /> : <LabList />}
+        {tab === "record" ? <RecordList /> : null}
+        {tab === "lab" ? <LabList /> : null}
+        {tab === "question" ? <QuestionList /> : null}
+        {tab === "me" ? <MeIntro /> : null}
       </section>
-
-      <footer className="border-t border-neutral-800 py-12 text-white">
-        <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 text-base md:px-10">
-          <div className="inline-flex items-center gap-2 text-base leading-[1.7] text-white">
-            <span>作者：</span>
-            <span className="flex h-7 w-7 overflow-hidden rounded-full ring-1 ring-white/20">
-              <img
-                src="/avatar.jpg"
-                alt="作者头像"
-                className="h-full w-full object-cover"
-              />
-            </span>
-            <a
-              href="https://xhslink.com/m/6cJBmAsJnKo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:underline"
-            >
-              @even在开庭
-            </a>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
 
 function RecordList() {
   const posts = [
+    {
+      title: "把复杂流程变成简单按钮",
+      excerpt: "一篇图文记录：我如何重新梳理一套法院文书下载流程。",
+      date: "2026 · 03",
+      href: "/blog/first",
+    },
     {
       title: "为什么我更愿意做小工具",
       excerpt:
@@ -111,13 +118,19 @@ function RecordList() {
     <div className="space-y-20">
       {posts.map((post, i) => (
         <article key={i} className="max-w-2xl">
-          <h2 className="text-4xl font-light leading-[1.35] text-white">
-            {post.title}
+          <h2 className="text-3xl font-light leading-[1.4] text-white md:text-4xl">
+            {post.href ? (
+              <Link href={post.href} className="hover:underline">
+                {post.title}
+              </Link>
+            ) : (
+              post.title
+            )}
           </h2>
           <p className="mt-6 text-lg leading-[1.7] text-neutral-300">
             {post.excerpt}
           </p>
-          <span className="mt-6 block text-sm uppercase tracking-[0.3em] text-neutral-500">
+          <span className="mt-6 block text-xs uppercase tracking-[0.35em] text-neutral-500">
             {post.date}
           </span>
         </article>
@@ -137,7 +150,7 @@ function LabList() {
     {
       name: "专注计时器",
       desc: "一个不打扰人的极简专注计时工具。",
-      preview: "/tool-preview-2.jpg",
+      preview: "/placeholder.jpg",
     },
   ];
 
@@ -145,7 +158,7 @@ function LabList() {
     <div className="space-y-20">
       {tools.map((tool, i) => (
         <div key={i}>
-          <h3 className="text-3xl font-light text-white">
+          <h3 className="text-3xl font-light leading-[1.4] text-white md:text-4xl">
             {tool.href ? (
               <a
                 href={tool.href}
@@ -171,6 +184,50 @@ function LabList() {
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+function QuestionList() {
+  const faqs = [
+    {
+      question: "网站如何搭建？",
+      answer:
+        "购买域名—vibe coding写网页—上传github-vercel部署。",
+    },
+    {
+      question: "网站搭建成本？",
+      answer: "域名：14元/年，服务器：无，网页开发：vibe coding，至今未充值。",
+    },
+  ];
+
+  return (
+    <div className="space-y-8">
+      {faqs.map((item) => (
+        <div key={item.question} className="border-b border-neutral-900 pb-6">
+          <h3 className="text-lg font-medium text-white">{item.question}</h3>
+          <p className="mt-3 text-base leading-[1.7] text-neutral-400">
+            {item.answer}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MeIntro() {
+  return (
+    <div>
+      <p className="max-w-2xl text-lg leading-[1.7] text-neutral-300">
+        我是一名关注法律、技术与产品的创作者，喜欢把复杂的流程变成更好
+        用的工具。正在持续写作与实验。
+      </p>
+      <Link
+        href="/me"
+        className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-white hover:underline"
+      >
+        查看详细介绍
+      </Link>
     </div>
   );
 }

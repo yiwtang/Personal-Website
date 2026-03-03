@@ -1,4 +1,4 @@
-import { Scale } from "lucide-react";
+﻿import { Scale } from "lucide-react";
 import type { ReactNode } from "react";
 
 interface LegalLayoutProps {
@@ -22,7 +22,7 @@ export function LegalLayout({ title, subtitle, children }: LegalLayoutProps) {
               </span>
             </div>
             <a
-              href="http://ytang.xyz/"
+              href="https://ytang.xyz/"
               className="rounded-full border border-neutral-800 px-4 py-2 text-xs uppercase tracking-[0.3em] text-neutral-200 transition-colors hover:border-neutral-600 hover:text-white"
             >
               返回主页
@@ -52,16 +52,16 @@ export function LegalLayout({ title, subtitle, children }: LegalLayoutProps) {
           </div>
         </div>
 
-        <footer className="grid gap-6 border-t border-neutral-900 pt-8 text-base text-white md:grid-cols-2">
-          <div className="grid grid-rows-[auto_auto] gap-2">
+        <footer className="grid gap-6 border-t border-neutral-900 pt-8 text-base text-white md:grid-cols-[1fr,1.2fr]">
+          <div className="grid gap-2">
             <span className="text-base uppercase tracking-[0.3em] text-white">
               说明
             </span>
             <span className="leading-[1.7] text-white">
-              文件从法院系统获取本站不存储任何文书内容
+              文件从法院系统获取，本站不存储任何文书内容。
             </span>
           </div>
-          <div className="grid grid-rows-[auto_auto] gap-2">
+          <div className="grid grid-rows-[auto,auto] gap-4">
             <div className="inline-flex items-center gap-2 text-base leading-[1.7] text-white">
               <span>作者：</span>
               <span className="flex h-6 w-6 overflow-hidden rounded-full ring-1 ring-white/20">
@@ -81,10 +81,10 @@ export function LegalLayout({ title, subtitle, children }: LegalLayoutProps) {
               </a>
             </div>
             <div className="group relative inline-flex items-center gap-2 text-base leading-[1.7] text-white">
-              <span>感谢作者</span>
+              <span>投喂作者☕</span>
               <div className="absolute left-0 top-full z-20 hidden pt-2 group-hover:block">
                 <img
-                  src="/thanks.jpg"
+                  src="https://ytang.xyz/thanks.jpg"
                   alt="收款码"
                   className="w-60 max-w-none rounded-xl border border-white/10 bg-white/5 object-contain shadow-lg"
                 />

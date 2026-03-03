@@ -1,6 +1,7 @@
-import type { Metadata, Viewport } from 'next'
+﻿import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
+import { SiteFooter } from '@/components/site-footer'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -8,23 +9,14 @@ export const metadata: Metadata = {
     template: '%s',
     default: 'even',
   },
-  description: '粘贴短信或链接，获取送达文书列表并下载',
+  description: '记录与实验，发生在生活、法律、科技与审美的交汇处。',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/avatar.jpg',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/avatar.jpg',
   },
 }
 
@@ -41,6 +33,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className="font-sans antialiased">
         {children}
+        <SiteFooter />
         <Toaster theme="dark" position="top-center" />
         <Analytics />
       </body>
