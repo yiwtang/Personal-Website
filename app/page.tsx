@@ -1,7 +1,6 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const heroImages = [
@@ -25,7 +24,6 @@ const tabs = [
 ];
 
 export default function Home() {
-  const searchParams = useSearchParams();
   const [tab, setTab] = useState<TabKey>("record");
   const [heroImage, setHeroImage] = useState(heroImages[0]);
 
@@ -34,7 +32,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const nextTab = searchParams.get("tab");
+    const nextTab = new URLSearchParams(window.location.search).get("tab");
     if (
       nextTab === "record" ||
       nextTab === "lab" ||
@@ -43,7 +41,7 @@ export default function Home() {
     ) {
       setTab(nextTab);
     }
-  }, [searchParams]);
+  }, []);
 
   return (
     <main className="min-h-screen bg-black text-neutral-200">
