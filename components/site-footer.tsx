@@ -24,12 +24,27 @@
           <div className="inline-flex items-center gap-2 text-white">
             <span>工具：</span>
             {[
-              { src: "/ai1.jpg", alt: "AI 工具 1" },
-              { src: "/ai2.jpg", alt: "AI 工具 2" },
-              { src: "/ai3.jpg", alt: "AI 工具 3" },
+              {
+                src: "/ai1.jpg",
+                alt: "AI 工具 1",
+                href: "https://chatgpt.com/",
+              },
+              {
+                src: "/ai2.jpg",
+                alt: "AI 工具 2",
+                href: "https://cursor.com/home",
+              },
+              {
+                src: "/ai3.jpg",
+                alt: "AI 工具 3",
+                href: "https://chatgpt.com/codex/get-started",
+              },
             ].map((tool) => (
-              <span
+              <a
                 key={tool.src}
+                href={tool.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex h-7 w-7 overflow-hidden rounded-full ring-1 ring-white/20"
               >
                 <img
@@ -37,7 +52,7 @@
                   alt={tool.alt}
                   className="h-full w-full object-cover"
                 />
-              </span>
+              </a>
             ))}
           </div>
         </div>

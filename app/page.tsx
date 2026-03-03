@@ -9,6 +9,12 @@ const heroImages = [
   "/hero-home3.jpg",
   "/hero-home4.jpg",
   "/hero-home5.jpg",
+  "/hero-home6.jpg",
+  "/hero-home7.jpg",
+  "/hero-home8.jpg",
+  "/hero-home9.jpg",
+  "/hero-home10.jpg",
+  "/hero-home11.jpg",
 ];
 
 const getRandomHeroImage = () =>

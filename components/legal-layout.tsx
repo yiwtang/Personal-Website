@@ -55,31 +55,13 @@ export function LegalLayout({ title, subtitle, children }: LegalLayoutProps) {
         <footer className="grid gap-6 border-t border-neutral-900 pt-8 text-base text-white md:grid-cols-[1fr,1.2fr]">
           <div className="grid gap-2">
             <span className="text-base uppercase tracking-[0.3em] text-white">
-              说明
+              说明：
             </span>
             <span className="leading-[1.7] text-white">
               文件从法院系统获取，本站不存储任何文书内容。
             </span>
           </div>
-          <div className="grid grid-rows-[auto,auto] gap-4">
-            <div className="inline-flex items-center gap-2 text-base leading-[1.7] text-white">
-              <span>作者：</span>
-              <span className="flex h-6 w-6 overflow-hidden rounded-full ring-1 ring-white/20">
-                <img
-                  src="/avatar.jpg"
-                  alt="作者头像"
-                  className="h-full w-full object-cover"
-                />
-              </span>
-              <a
-                href="https://xhslink.com/m/6cJBmAsJnKo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:underline"
-              >
-                @even在开庭
-              </a>
-            </div>
+          <div className="grid grid-rows-[auto] gap-4">
             <div className="group relative inline-flex items-center gap-2 text-base leading-[1.7] text-white">
               <span>投喂作者☕</span>
               <div className="absolute left-0 top-full z-20 hidden pt-2 group-hover:block">
